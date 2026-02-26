@@ -1,12 +1,15 @@
 package gym
 
-object GymCapacity {
+class GymCapacity {
 
-    private const val MAX_VISITORS = 10
+    companion object {
+        private const val MAX_VISITORS = 10
+    }
 
     var visitors: Int = 0
         private set
 
+    @Synchronized
     fun enter(): Boolean {
         return if (visitors < MAX_VISITORS) {
             visitors++

@@ -1,12 +1,17 @@
 package gym
 
-object TennisCourt {
+class TennisCourt(
+    private val gymCapacity: GymCapacity,
+    private val gymSafe: GymSafe
+) {
 
-    private const val PRICE = 1
+    companion object {
+        private const val PRICE = 1
+    }
 
     fun enter(money: Int): Boolean {
-        return if (GymCapacity.enter() && money == PRICE) {
-            GymSafe.save(money)
+        return if (money == PRICE && gymCapacity.enter()) {
+            gymSafe.save(money)
             true
         } else {
             false
